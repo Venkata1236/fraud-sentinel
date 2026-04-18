@@ -99,3 +99,4 @@ def get_predictor() -> FraudPredictor:
             "Ensure load_predictor() is called in the FastAPI lifespan."
         )
     return _predictor   
+# end of predict

@@ -72,3 +72,4 @@ app.include_router(predict_router)
 @app.get("/health", tags=["Health"])
 async def health() -> dict:
     return {"status": "ok", "app": settings.APP_NAME, "env": settings.ENVIRONMENT}
+# end of main

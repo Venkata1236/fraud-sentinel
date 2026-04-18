@@ -75,3 +75,5 @@ async def health() -> dict:
 # end of main
 
 # CORS allows all origins in dev, restricted in prod
+
+# lifespan replaces deprecated on_event startup handler

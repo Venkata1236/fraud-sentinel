@@ -102,3 +102,5 @@ def get_predictor() -> FraudPredictor:
 # end of predict
 
 # risk tier: LOW < 0.30, MEDIUM 0.30-0.70, HIGH > 0.70
+
+# get_predictor() used as FastAPI Depends() injection

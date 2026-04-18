@@ -93,3 +93,5 @@ class TransactionRecord(BaseModel):
 # PredictRequest validates exactly 30 features
 
 # AnalyzeRequest reserved for LangGraph Day 2
+
+# TransactionRecord enables ORM mode for SQLAlchemy

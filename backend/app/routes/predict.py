@@ -50,3 +50,5 @@ async def model_health(
         "feature_names_sample": predictor.feature_names[:5],
     }
 # end of routes
+
+# latency logged per request via loguru

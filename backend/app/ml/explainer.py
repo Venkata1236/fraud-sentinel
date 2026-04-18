@@ -61,3 +61,4 @@ class FraudExplainer:
         ]
 
         return {"shap_values": sv_list, "top_features": top_features}
+# end of explainer

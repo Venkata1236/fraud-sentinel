@@ -88,3 +88,4 @@ class TransactionRecord(BaseModel):
 
     class Config:
         from_attributes = True   # enables ORM mode for SQLAlchemy
+# end of schemas

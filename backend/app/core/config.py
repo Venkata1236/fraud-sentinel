@@ -27,3 +27,5 @@ class Settings(BaseSettings):
 
 settings = Settings()
 # end of config
+
+# MODEL_PATH uses pathlib for OS-agnostic paths

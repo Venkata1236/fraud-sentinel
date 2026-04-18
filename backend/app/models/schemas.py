@@ -91,3 +91,5 @@ class TransactionRecord(BaseModel):
 # end of schemas
 
 # PredictRequest validates exactly 30 features
+
+# AnalyzeRequest reserved for LangGraph Day 2

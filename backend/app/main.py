@@ -73,3 +73,5 @@ app.include_router(predict_router)
 async def health() -> dict:
     return {"status": "ok", "app": settings.APP_NAME, "env": settings.ENVIRONMENT}
 # end of main
+
+# CORS allows all origins in dev, restricted in prod

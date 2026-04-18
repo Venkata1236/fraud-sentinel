@@ -66,7 +66,12 @@ app.add_middleware(
 
 # ─── Routers ──────────────────────────────────────────────────────────────────
 app.include_router(predict_router)
-# app.include_router(analyze_router)  ← uncomment Day 2
+from app.routes.predict import router as predict_router
+from app.routes.analyze import router as analyze_router
+
+# inside the app setup:
+app.include_router(predict_router)
+app.include_router(analyze_router)
 
 # ─── Root health ──────────────────────────────────────────────────────────────
 @app.get("/health", tags=["Health"])

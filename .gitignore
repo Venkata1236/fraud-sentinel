@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# ML artifacts
+backend/models/*.pkl
+backend/data/
+
+# Env
+.env
+*.env
+
+# Node
+node_modules/
+frontend/dist/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+backend/data/
+
+creditcard.csv

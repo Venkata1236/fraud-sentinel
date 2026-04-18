@@ -49,3 +49,4 @@ async def model_health(
         "feature_count": len(predictor.feature_names),
         "feature_names_sample": predictor.feature_names[:5],
     }
+# end of routes

@@ -36,3 +36,7 @@ package-lock.json
 package.json
 
 frontend/package-lock.json
+
+frontend/public/
+
+frontend/src/assets/

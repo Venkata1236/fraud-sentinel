@@ -190,9 +190,10 @@ def report_node(state: FraudState) -> FraudState:
 # ─── Graph Assembly ───────────────────────────────────────────────────────────
 
 def build_fraud_graph():
+    from langgraph.graph import StateGraph, END
+
     graph = StateGraph(FraudState)
 
-    # Add all nodes
     graph.add_node("score", score_node)
     graph.add_node("auto_approve", auto_approve_node)
     graph.add_node("flag_review", flag_review_node)
@@ -200,12 +201,10 @@ def build_fraud_graph():
     graph.add_node("explain", explain_node)
     graph.add_node("escalate", escalate_node)
     graph.add_node("log", log_node)
-    graph.add_node("report", report_node)
+    graph.add_node("compile_report", report_node)
 
-    # Entry point
     graph.set_entry_point("score")
 
-    # Conditional routing after score
     graph.add_conditional_edges(
         "score",
         confidence_router,
@@ -216,21 +215,26 @@ def build_fraud_graph():
         }
     )
 
-    # LOW path: auto_approve → log → END
     graph.add_edge("auto_approve", "log")
     graph.add_edge("log", END)
 
-    # MEDIUM path: flag_review → explain → report → END
     graph.add_edge("flag_review", "explain")
-    graph.add_edge("explain", "report")
-    graph.add_edge("report", END)
+    graph.add_edge("explain", "compile_report")
+    graph.add_edge("compile_report", END)
 
-    # HIGH path: block_investigate → escalate → explain → report → END
     graph.add_edge("block_investigate", "escalate")
     graph.add_edge("escalate", "explain")
 
-    return graph.compile()
-
+    compiled = graph.compile()
+    print(f"Graph compiled: {type(compiled)}")  # debug line
+    return compiled  # ← THIS LINE IS CRITICAL
 
 # Singleton — compiled once at import
-fraud_graph = build_fraud_graph()
+try:
+    fraud_graph = build_fraud_graph()
+    if fraud_graph is None:
+        raise RuntimeError("build_fraud_graph() returned None")
+except Exception as e:
+    import traceback
+    traceback.print_exc()
+    raise RuntimeError(f"Failed to build fraud graph: {e}")
